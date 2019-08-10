@@ -10,7 +10,7 @@ SECRET_KEY = '00'
 # DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', '167.71.34.254']
 
 
 # Application definition
