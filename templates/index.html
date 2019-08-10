@@ -13,10 +13,14 @@
     
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> 
-    
+
+    <!--    Favicon  -->
+    <link rel="shortcut icon" href="{% static 'assets\images\favicon.png' %}" type="image/png">
+
     <!-- FontAwesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
-    
+
+
     <!-- Global CSS -->
     <link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
     
@@ -42,20 +46,17 @@
     <!-- ******HEADER****** --> 
     <header class="header">
         <div class="container clearfix">
-            <img class="profile-image img-fluid float-left" src="{% static 'assets/images/fox.jpg' %}" alt="Denis Gerashchenko"/>
+            <img class="profile-image img-fluid float-left" src="{{ photo.profile_photo.url }}" alt="Denis Gerashchenko"/>
             <div class="profile-content float-left">
                 <h1 class="name">Denis Gerashchenko</h1>
                 <h2 class="desc">Web Designer</h2>
                 <ul class="social list-inline">
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>                   
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                    <li class="list-inline-item"><a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a></li>
                     <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-github-alt"></i></a></li>    
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-stack-overflow"></i></a></li>   
-                    <li class="list-inline-item last-item"><a href="#"><i class="fab fa-codepen"></i></a></li>                
-                </ul> 
+                    <li class="list-inline-item"><a href="https://github.com/Denis-Gerashchenko"><i class="fab fa-github-alt"></i></a></li>
+                </ul>
             </div><!--//profile-->
-            <a class="btn btn-cta-primary float-right" href="https://themes.3rdwavemedia.com/" target="_blank"><i class="fas fa-paper-plane"></i> Contact Me</a>              
+            <a class="btn btn-cta-primary float-right" href="mailto:denis.gerashchenko.qa@gmail.com?subject=Hello!" target="_blank"><i class="fas fa-paper-plane"></i> Contact Me</a>
         </div><!--//container-->
     </header><!--//header-->
     
@@ -100,7 +101,11 @@
                         <div class="content">
                             {% for obj in other %}
                             <div class="item">
+                                {% if obj.link %}
                                 <h3 class="title"><a href="{{ obj.link }}" target="_blank">{{ obj.title }}</a></h3>
+                                {% else %}
+                                <h3 class="title"><a href="{{ obj.github }}" target="_blank">{{ obj.title }}</a></h3>
+                                {% endif %}
                                 <p class="summary">{{ obj.overview }}</p>
                                 <p><a class="more-link" href="{{ obj.github }}" target="_blank"><i class="fas fa-external-link-alt"></i>Download Now</a></p>
                             </div><!--//item-->
@@ -115,8 +120,12 @@
                         <div class="content">
                             {% for obj in experience %}
                             <div class="item">
-                                <h3 class="title">Co-Founder & Lead Developer - <span class="place"><a href="#">Startup Hub</a></span> <span class="year">(2014 - Present)</span></h3>
-                                <p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.</p>
+                                {% if obj.job_done %}
+                                <h3 class="title">{{ obj.vacancy }}  <span class="place"><a href="{{ obj.website}}">  {{ obj.company }}</a></span> <span class="year">({{ obj.date_start }} - {{ obj.date_end }})</span></h3>
+                                {% else %}
+                                <h3 class="title">{{ obj.vacancy }}  <span class="place"><a href="{{ obj.website}}">  {{ obj.company }}</a></span> <span class="year">({{ obj.date_start }} - Today)</span></h3>
+                                {% endif %}
+                                <p>{{ obj.work_experience }}</p>
                             </div><!--//item-->
                             {% endfor %}
 
@@ -141,7 +150,7 @@
                             <ul class="list-unstyled">
                                 <li><i class="fas fa-map-marker-alt"></i><span class="sr-only">Location:</span>Cherkasy, US</li>
                                 <li><i class="fas fa-envelope"></i><span class="sr-only">Email:</span><a href="#">denis.gerashchenko.qa@gmail.com</a></li>
-                                <li><i class="fas fa-link"></i><span class="sr-only">Website:</span><a href="#">https://127.0.0.1</a></li>
+                                <li><i class="fas fa-file-alt"></i><span class="sr-only">Website:</span><a href="" target="_blank">CV pdf</a>
                             </ul>
                         </div><!--//content-->  
                     </div><!--//section-inner-->                 
@@ -204,7 +213,7 @@
                                 </li><!--//item-->
                                 <li class="item">
                                     <span class="title"><strong>English:</strong></span>
-                                    <span class="level">Upper Intermediate <br class="visible-xs"/><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i style="color:grey;" class="fas fa-star"></i> <i style="color:grey;" class="fas fa-star"></i> </span>
+                                    <span class="level">Upper Intermediate <br class="visible-xs"/><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i style="color:#e8e8e8;" class="fas fa-star"></i> </span>
                                 </li><!--//item-->
                             </ul>
                         </div><!--//content-->
@@ -220,7 +229,7 @@
                                 <li><a href="https://fortawesome.github.io/Font-Awesome/" target="_blank"><i class="fas fa-external-link-alt"></i>FontAwesome</a></li>
                                 <li><a href="https://jquery.com/" target="_blank"><i class="fas fa-external-link-alt"></i>jQuery</a></li>
                                 <li><a href="https://github.com/IonicaBizau/github-calendar" target="_blank"><i class="fas fa-external-link-alt"></i>GitHub Calendar Plugin</a></li>
-                                
+
                                 <li><a href="https://caseyscarborough.com/projects/github-activity/" target="_blank"><i class="fas fa-external-link-alt"></i>GitHub Activity Stream</a></li>
                                 
                                 <li><a href="https://github.com/sdepold/jquery-rss" target="_blank"><i class="fas fa-external-link-alt"></i>jQuery RSS</a></li>
