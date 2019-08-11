@@ -1,4 +1,5 @@
-# CV
+#CV
+
 CV website created with Django for personal usage
 
-Can be easyly managed via /admin
+Can be easily managed via /admin
