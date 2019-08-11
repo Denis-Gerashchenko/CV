@@ -10,7 +10,7 @@ SECRET_KEY = '00'
 # DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = ['http://ggit.online/']
+ALLOWED_HOSTS = ['ggit.online']
 
 
 # Application definition
